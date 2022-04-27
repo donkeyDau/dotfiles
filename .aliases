@@ -1,0 +1,177 @@
+PATH=$PATH:~/bin:~/.yarn/bin
+EDITOR="/usr/bin/vim"
+
+#-------------------
+# NodeJS Version manager
+#-------------------
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#-------------------
+# Personal Aliases
+#-------------------
+alias config='vim ~/.aliases'
+alias faas='faas-cli'
+alias fullpath='readlink -f'
+alias gnome-disk-utility='sudo gnome-disks'
+alias grep='grep --color=auto'
+alias gvd='gvimdiff'
+alias mkdir='mkdir -p'
+alias palimpsest='sudo gnome-disks'
+alias picview='eog'
+alias shred='/usr/bin/shred -u -n1'
+alias try='watch'
+alias vi='vim'
+
+# wget sucks with certificates. Let's keep it simple.
+alias wget="curl -O"
+
+# Filesystem
+alias mv='mv -v'
+alias rm='rm -i -v'
+alias cp='cp -v'
+
+# ls options: A = include hidden (but not . or ..), F = put `/` after folders, h = byte unit suffixes
+alias ls='gls -AFh ${colorflag} --group-directories-first'
+alias lt='ll -rhtl'        #  Show all files recursive ls.
+alias la='ll -A'           #  Show hidden files.
+
+# Git
+alias g='git'
+alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
+alias master='git checkout master 2> /dev/null || git checkout main'
+alias undopush="git push -f origin HEAD^:master"
+
+#-------------------------------------------------------------
+# Spelling typos - highly personnal and keyboard-dependent :-)
+#-------------------------------------------------------------
+alias sduo='sudo'
+alias cd..='cd ..'
+alias chomod='chmod'
+alias gi='git'
+alias sulb='subl'
+
+# use coreutils `ls` if possible…
+hash gls >/dev/null 2>&1 || alias gls="ls"
+
+# always use color, even when piping (to awk,grep,etc)
+if gls --color > /dev/null 2>&1; then colorflag="--color"; else colorflag="-G"; fi;
+export CLICOLOR_FORCE=1
+
+#-------------------------------------------------------------
+# Functions
+#-------------------------------------------------------------
+function cert() {
+    echo | openssl s_client -showcerts -servername $1 -connect $1:443 2>/dev/null | openssl x509 -inform pem -noout -text
+}
+
+function please() {
+    if [[ $# == 0 ]]; then
+        sudo $(history -p '!!')
+    else
+        sudo "$@"
+    fi
+}
+
+function gimpy() {
+    source=$(/bin/ls -t ~/Bilder/Bildschirmfoto* | head -1)
+    filename=$(basename "$source")
+    target_name='screen'
+
+	if [ -z ${1} ] ; then
+        target_name="${1}"
+	fi
+
+    mv "$source" "/tmp/${target_name}.png"
+    gimp "/tmp/${target_name}.png" &
+}
+
+function cpg() {
+    cp $@;
+
+    LAST_ARG="${@: -1}"
+
+    if [[ -d "${LAST_ARG}" ]]; then
+        TARGET_DIR="${LAST_ARG}"
+    elif [[ -f "${LAST_ARG}" ]]; then
+        TARGET_DIR="${LAST_ARG%/*}/"
+    fi
+
+    cd "${TARGET_DIR}";
+}
+
+function mvg() {
+    mv $@;
+
+    LAST_ARG="${@: -1}"
+
+    if [[ -d "${LAST_ARG}" ]]; then
+        TARGET_DIR="${LAST_ARG}"
+    elif [[ -f "${LAST_ARG}" ]]; then
+        TARGET_DIR="${LAST_ARG%/*}/"
+    fi
+
+	cd "${TARGET_DIR}";
+}
+
+function rgrep() {
+    # Recursive grep
+    find -type f -name "${1}" -exec grep -H "${2}" {} \;
+    echo "find -type f -name ${1} -exec grep -H ${2} {} \;"
+}
+
+
+function swap() {
+    # Swap 2 filenames around, if they exist (from Uzi's bashrc).
+    local TMPFILE=tmp.$$
+
+    [ $# -ne 2 ] && echo "swap: 2 arguments needed" && return 1
+    [ ! -e $1 ] && echo "swap: $1 does not exist" && return 1
+    [ ! -e $2 ] && echo "swap: $2 does not exist" && return 1
+
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
+
+function extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1     ;;
+            *.tar.gz)    tar xvzf $1     ;;
+            *.tar.xz)    tar Jxf $1      ;;
+            *.bz2)       bunzip2 $1      ;;
+            *.rar)       unrar x $1      ;;
+            *.gz)        gunzip $1       ;;
+            *.tar)       tar xvf $1      ;;
+            *.tbz2)      tar xvjf $1     ;;
+            *.tgz)       tar xvzf $1     ;;
+            *.zip)       unzip $1        ;;
+            *.Z)         uncompress $1   ;;
+            *.7z)        7z x $1         ;;
+            *)           echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+        echo "'$1' is not a valid file!"
+    fi
+}
+
+
+function private_mode() {
+    echo -e "\e[33mEntered private mode\e[39m"
+    HISTFILE=/dev/null
+}
+
+#-------------------------------------------------------------
+# Run in background automatically
+#-------------------------------------------------------------
+function firefox() { command firefox "$@" & }
+function libreoffice() { command libreoffice "$@" & }
+
+# Load dev aliases
+cur_dir=$(dirname $0:A)
+if [ -f "${cur_dir}/.dev_aliases" ]; then
+    . "${cur_dir}/.dev_aliases"
+fi
+
