@@ -75,6 +75,7 @@ ZSH_CUSTOM=~/WORKSPACE/PERSONAL/dotfiles/ohzsh
 # plugins=(git)
 plugins=(
     git
+    jump
     kubectl
     thefuck
 )
@@ -107,3 +108,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
+
+# Do not store commands with leading zero in .zsh_history
+setopt HIST_IGNORE_SPACE
