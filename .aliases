@@ -117,8 +117,14 @@ function mvg() {
 
 function rgrep() {
     # Recursive grep
-    find -type f -name "${1}" -exec grep -H "${2}" {} \;
-    echo "find -type f -name ${1} -exec grep -H ${2} {} \;"
+    if [ -z ${2} ] ; then
+        echo "find -type f -exec grep -H ${1} {} \;"
+        find -type f -exec grep -H "${1}" {} \;
+    else
+        echo "find -type f -name ${1} -exec grep -H ${2} {} \;"
+        find -type f -name "${1}" -exec grep -H "${2}" {} \;
+    fi
+
 }
 
 
@@ -161,6 +167,7 @@ function extract() {
 function private_mode() {
     echo -e "\e[33mEntered private mode\e[39m"
     HISTFILE=/dev/null
+    cd ~/PRIVAT
 }
 
 #-------------------------------------------------------------
