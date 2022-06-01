@@ -75,6 +75,7 @@ ZSH_CUSTOM=~/WORKSPACE/PERSONAL/dotfiles/ohzsh
 # plugins=(git)
 plugins=(
     git
+    jump
     kubectl
     thefuck
 )
