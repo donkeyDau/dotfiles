@@ -1,6 +1,9 @@
 PATH=$PATH:~/bin:~/.yarn/bin
 EDITOR="/usr/bin/vim"
 
+# Remove word in terminal via CTRL + BACKSPACE
+bindkey '^H' backward-kill-word
+
 #-------------------
 # NodeJS Version manager
 #-------------------
@@ -12,6 +15,7 @@ export NVM_DIR="$HOME/.nvm"
 # Personal Aliases
 #-------------------
 alias config='vim ~/.aliases'
+alias diskusage='baobab'
 alias faas='faas-cli'
 alias fullpath='readlink -f'
 alias gnome-disk-utility='sudo gnome-disks'
