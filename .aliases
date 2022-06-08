@@ -1,6 +1,9 @@
 PATH=$PATH:~/bin:~/.yarn/bin
 EDITOR="/usr/bin/vim"
 
+# Remove word in terminal via CTRL + BACKSPACE
+bindkey '^H' backward-kill-word
+
 #-------------------
 # NodeJS Version manager
 #-------------------
