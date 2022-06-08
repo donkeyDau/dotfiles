@@ -12,6 +12,7 @@ export NVM_DIR="$HOME/.nvm"
 # Personal Aliases
 #-------------------
 alias config='vim ~/.aliases'
+alias diskusage='baobab'
 alias faas='faas-cli'
 alias fullpath='readlink -f'
 alias gnome-disk-utility='sudo gnome-disks'
