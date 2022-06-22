@@ -111,3 +111,7 @@ source ~/.aliases
 
 # Do not store commands with leading zero in .zsh_history
 setopt HIST_IGNORE_SPACE
+
+# Correct only misspelled commands but not arguments (filenames, ...)
+setopt CORRECT
+unsetopt CORRECT_ALL

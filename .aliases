@@ -28,12 +28,15 @@ alias shred='/usr/bin/shred -u -n1'
 alias try='watch'
 alias vi='vim'
 
+alias vscode='/usr/bin/code'
+alias code='vscodium'
+
 # wget sucks with certificates. Let's keep it simple.
 alias wget="curl -O"
 
 # Filesystem
 alias mv='mv -v'
-alias rm='rm -i -v'
+alias rm='rm -v'
 alias cp='cp -v'
 
 # ls options: A = include hidden (but not . or ..), F = put `/` after folders, h = byte unit suffixes
@@ -179,7 +182,6 @@ function libreoffice() { command libreoffice "$@" & }
 
 # Load dev aliases
 cur_dir=$(dirname $0:A)
-if [ -f "${cur_dir}/.dev_aliases" ]; then
-    . "${cur_dir}/.dev_aliases"
+if [ -f "${cur_dir}/../dev-dotfiles/.dev_aliases" ]; then
+    . "${cur_dir}/../dev-dotfiles/.dev_aliases"
 fi
-

@@ -1,27 +1,14 @@
+[include]
+    path = ~/.gitconfig_personal_details
+
 [core]
 	editor = vim
 
 [alias]
-	a = add
-	r = reset
-	c = commit -m
-	p = push
-	s = status
-	sclone = clone --depth=1
-	amend = commit --amend --all
-	co = checkout
-	df = diff --color --color-words --abbrev
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	t = tag -s
-
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
-        sl = stash list --pretty=format:\"%C(red)%h%C(reset) - %C(dim yellow)(%C(bold magenta)%gd%C(dim yellow))%C(reset) %<(70,trunc)%s %C(green)(%cr) %C(bold blue)<%an>%C(reset)\"
-        reup = rebase-update # depot_tools specific
 
 [stash]
-        showPatch = true
+    showPatch = true
+
 [diff]
 	tool = gvimdiff
 
