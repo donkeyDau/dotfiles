@@ -182,7 +182,6 @@ function libreoffice() { command libreoffice "$@" & }
 
 # Load dev aliases
 cur_dir=$(dirname $0:A)
-if [ -f "${cur_dir}/.dev_aliases" ]; then
-    . "${cur_dir}/.dev_aliases"
+if [ -f "${cur_dir}/../dev-dotfiles/.dev_aliases" ]; then
+    . "${cur_dir}/../dev-dotfiles/.dev_aliases"
 fi
-
