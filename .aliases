@@ -28,6 +28,9 @@ alias shred='/usr/bin/shred -u -n1'
 alias try='watch'
 alias vi='vim'
 
+alias vscode='/usr/bin/code'
+alias code='vscodium'
+
 # wget sucks with certificates. Let's keep it simple.
 alias wget="curl -O"
 
