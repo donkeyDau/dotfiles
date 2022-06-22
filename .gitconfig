@@ -4,7 +4,8 @@
 [alias]
 
 [stash]
-        showPatch = true
+    showPatch = true
+
 [diff]
 	tool = gvimdiff
 
