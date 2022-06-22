@@ -36,7 +36,7 @@ alias wget="curl -O"
 
 # Filesystem
 alias mv='mv -v'
-alias rm='rm -i -v'
+alias rm='rm -v'
 alias cp='cp -v'
 
 # ls options: A = include hidden (but not . or ..), F = put `/` after folders, h = byte unit suffixes
