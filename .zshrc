@@ -115,3 +115,5 @@ setopt HIST_IGNORE_SPACE
 # Correct only misspelled commands but not arguments (filenames, ...)
 setopt CORRECT
 unsetopt CORRECT_ALL
+unsetopt share_history
+
