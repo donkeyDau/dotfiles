@@ -1,19 +1,62 @@
 [include]
     path = ~/.gitconfig_personal_details
-
 [core]
 	editor = vim
-
-[alias]
-
 [stash]
+	# `git stash show` shows the diff from that stash
     showPatch = true
-
 [diff]
 	tool = gvimdiff
-
+	# Better diffs
+	algorithm = histogram
+	# Uses different colours to highlight lines in diffs that have been “moved”
+	colorMoved = default
 [pull]
+	# Do not merge anything but "break"
 	rebase = false
-
 [init]
     defaultBranch = main
+[fetch]
+	# Automatically delete remote tracking branches that have been deleted
+	prune = true
+	# Checks sanity of objects on fetch
+	fsckobjects = true
+[pager]
+	# Do not page branch names like `less` but list them directly in the cli
+	branch = false
+[merge]
+	# Improved merge conflict resolution with the original code in between to
+	# get an idea on which base the changes were done
+	conflictstyle = zdiff3
+[rebase]
+	# Squash git `commit --fixup SHA` commits
+	autosquash = true
+	# Stash automatically before rebase and pop on finish
+	autostash = true
+[push]
+	# Create a remote branch with the same name if not present
+	default = current
+	# Push new tags along with commits being pushed
+	followtags = true
+[rerere]
+	# Remember rebase resolution and apply them automatically if same rebase
+	# takes place next time
+	enabled = true
+[help]
+	# Autocorrection on commit messages
+	autocorrect = 10
+[url "git@github.com:"]
+	# Use ssh instead of https automatically
+	insteadOf = https://github.com/
+[transfer]
+	# Checks sanity of objects on transfert
+	fsckobjects = true
+[receive]
+	# Checks sanity of objects on receiving
+	fsckobjects = true
+[branch]
+	# Sort branches by commit date (desc) instead of alphabetically
+	sort = -committerdate
+[log]
+	# Display dates as 2023-05-25 13:54:51 instead of Thu May 25 13:54:51 2023
+	date = iso
