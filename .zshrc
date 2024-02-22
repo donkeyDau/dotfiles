@@ -77,7 +77,6 @@ plugins=(
     git
     jump
     kubectl
-    thefuck
 )
 
 source $ZSH/oh-my-zsh.sh
