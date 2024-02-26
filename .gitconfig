@@ -45,9 +45,6 @@
 [help]
 	# Autocorrection on commit messages
 	autocorrect = 10
-[url "git@github.com:"]
-	# Use ssh instead of https automatically
-	insteadOf = https://github.com/
 [transfer]
 	# Checks sanity of objects on transfert
 	fsckobjects = true
