@@ -5,34 +5,30 @@ EDITOR="/usr/bin/vim"
 bindkey '^H' backward-kill-word
 
 #-------------------
-# NodeJS Version manager
-#-------------------
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#-------------------
 # Personal Aliases
 #-------------------
+alias kubectl='kubecolor'
 alias config='vim ~/.aliases'
 alias diskusage='baobab'
-alias faas='faas-cli'
 alias fullpath='readlink -f'
 alias gnome-disk-utility='sudo gnome-disks'
 alias gnome-version='gnome-shell --version'
 alias grep='grep --color=auto'
 alias gvd='gvimdiff'
+alias json='fx'
 alias mkdir='mkdir -p'
 alias office='libreoffice'
+alias netstat='somo'
 alias palimpsest='sudo gnome-disks'
-alias picview='eog'
+alias picview='loupe'
+alias reset_edge='rm -rf ~/.cache/microsoft-edge ~/.cache/Microsoft ~/.config/microsoft-edge'
 alias shred='/usr/bin/shred -u -n1'
 alias try='watch'
 alias vi='vim'
 
 alias vscode='/usr/bin/code'
 alias code='vscodium'
-
+alias obs='env QT_QPA_PLATFORM=wayland /usr/bin/obs'
 # wget sucks with certificates. Let's keep it simple.
 alias wget="curl -O"
 
