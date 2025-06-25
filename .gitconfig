@@ -5,15 +5,20 @@
 [stash]
 	# `git stash show` shows the diff from that stash
     showPatch = true
+[column]
+	# use tabular view for branch/... list
+	ui = auto
 [diff]
 	tool = gvimdiff
 	# Better diffs
 	algorithm = histogram
 	# Uses different colours to highlight lines in diffs that have been “moved”
 	colorMoved = default
+	# Detect renamed files (a bit more expensive)
+	renames = true
 [pull]
-	# Do not merge anything but "break"
-	rebase = false
+	# rebase on pulling
+	rebase = true
 [init]
     defaultBranch = main
 [fetch]
@@ -21,6 +26,8 @@
 	prune = true
 	# Checks sanity of objects on fetch
 	fsckobjects = true
+	# Deleted branches to be deleted locally as well
+	all = true
 [pager]
 	# Do not page branch names like `less` but list them directly in the cli
 	branch = false
@@ -33,6 +40,8 @@
 	autosquash = true
 	# Stash automatically before rebase and pop on finish
 	autostash = true
+	# Update stacked branches
+	updateRefs = true
 [push]
 	# Create a remote branch with the same name if not present
 	default = current
@@ -42,9 +51,14 @@
 	# Remember rebase resolution and apply them automatically if same rebase
 	# takes place next time
 	enabled = true
+	# Automatically re-apply remembered resolutions
+	autoupdate = true
+[tag]
+	# Sort tags correctly on semantic versioning
+	sort = version:refname
 [help]
-	# Autocorrection on commit messages
-	autocorrect = 10
+	# Ask for autocorrection on commit messages
+	autocorrect = prompt
 [transfer]
 	# Checks sanity of objects on transfert
 	fsckobjects = true
@@ -57,3 +71,5 @@
 [log]
 	# Display dates as 2023-05-25 13:54:51 instead of Thu May 25 13:54:51 2023
 	date = iso
+[credential]
+	helper = manager
