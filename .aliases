@@ -38,9 +38,15 @@ alias rm='rm -v'
 alias cp='cp -v'
 
 # ls options: A = include hidden (but not . or ..), F = put `/` after folders, h = byte unit suffixes
-alias ls='gls -AFh ${colorflag} --group-directories-first'
-alias lt='ll -rhtl'        #  Show all files recursive ls.
-alias la='ll -A'           #  Show hidden files.
+# alias ls='gls -AFh ${colorflag} --group-directories-first'
+# alias lt='ll -rhtl'        #  Show all files recursive ls.
+# alias la='ll -A'           #  Show hidden files.
+alias ls='eza -g --group-directories-first --git'
+alias ll='eza -gl --group-directories-first --git'
+alias lt='eza -gl -snewest --group-directories-first --git'
+alias la='eza -glad --group-directories-first --git .*'
+alias ld='eza -glD --group-directories-first --git'
+alias lS='eza -gl -ssize --group-directories-first --git'
 
 # Git
 alias g='git'
