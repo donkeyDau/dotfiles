@@ -178,6 +178,10 @@ function private_mode() {
     cd ~/PRIVAT
 }
 
+function strip_filename_prefix() {
+    for file in $1*; do mv "$file" "${file#$1}"; done
+}
+
 #-------------------------------------------------------------
 # Run in background automatically
 #-------------------------------------------------------------
