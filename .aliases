@@ -123,6 +123,11 @@ function mvg() {
 	cd "${TARGET_DIR}";
 }
 
+function mkgo() {
+    mkdir -p $1
+    cd $1
+}
+
 function rgrep() {
     # Recursive grep
     if [ -z ${2} ] ; then
@@ -135,6 +140,11 @@ function rgrep() {
 
 }
 
+function grep_highlight_pattern() {
+    # grep in large (minified) files and instead of the full
+    # line give only a few chars before and after the hit
+    rg -o ".{0,20}$1.{0,20}" $2
+}
 
 function swap() {
     # Swap 2 filenames around, if they exist (from Uzi's bashrc).
